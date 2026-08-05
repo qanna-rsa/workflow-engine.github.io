@@ -7,11 +7,14 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-// GitHub Pages deployment target. Update these three values (plus the
-// matching `organization`/`repo_name` inputs in
-// ../.github/workflows/deploy-docs.yml) if the repo ever moves.
+// GitHub Pages deployment target. `workflow-engine.github.io` is a GitHub
+// *user/org site* (repo name === "<org>.github.io"), which GitHub Pages
+// always serves at the domain root rather than under "/<repo>/" the way a
+// project site would — hence baseUrl below is '/', not `/${GITHUB_REPO}/`.
+// If this docs site ever moves to an ordinary project repo, baseUrl must
+// switch back to `/${GITHUB_REPO}/`.
 const GITHUB_ORG = 'qanna-rsa';
-const GITHUB_REPO = 'workflow-engine-docs';
+const GITHUB_REPO = 'workflow-engine.github.io';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -27,9 +30,8 @@ const config = {
 
   // Set the production url of your site here
   url: `https://${GITHUB_ORG}.github.io`,
-  // Set the /<baseUrl>/ pathname under which your site is served.
-  // For a GitHub Pages *project* site this is '/<repo>/'.
-  baseUrl: `/${GITHUB_REPO}/`,
+  // User/org site (see note above) -> served at the root.
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   organizationName: GITHUB_ORG,
