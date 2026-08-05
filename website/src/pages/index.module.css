@@ -1,0 +1,163 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 6rem 0 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(99, 102, 241, 0.16),
+      transparent 45%
+    ),
+    radial-gradient(circle at 85% 0%, rgba(129, 140, 248, 0.14), transparent 40%),
+    var(--ifm-background-color);
+}
+
+[data-theme='dark'] .heroBanner {
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(99, 102, 241, 0.22),
+      transparent 45%
+    ),
+    radial-gradient(circle at 85% 0%, rgba(129, 140, 248, 0.16), transparent 40%),
+    var(--ifm-background-color);
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroTitle {
+  font-size: 3.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+  margin: 0 auto 1rem;
+  max-width: 46rem;
+}
+
+.heroLead {
+  font-size: 1.05rem;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3rem 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ghostButton {
+  border: 1px solid var(--ifm-color-emphasis-400);
+  color: var(--ifm-font-color-base);
+}
+
+.ghostButton:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.sectionAlt {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.sectionAlt .sectionSubtitle {
+  text-align: left;
+  margin: 0 0 1.25rem;
+}
+
+.sectionAlt .sectionTitle {
+  text-align: left;
+}
+
+.featureGrid {
+  row-gap: 1.5rem;
+}
+
+.featureCol {
+  display: flex;
+}
+
+.featureCard,
+.exploreCard {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-surface-color);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  color: inherit;
+}
+
+.exploreCard:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.featureTitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.featureDescription {
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0;
+}
