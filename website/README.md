@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-Starts a hot-reloading dev server at `http://localhost:3000/`.
+Starts a hot-reloading dev server at `http://localhost:3000/workflow-engine.github.io/`.
 
 ## Build
 
