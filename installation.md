@@ -3,7 +3,7 @@
 ## Requirements
 
 - PHP 8.1+
-- Laravel 11 or 12 (`illuminate/support`, `illuminate/http`, `illuminate/console`, `illuminate/contracts`, `illuminate/bus`, `illuminate/queue`)
+- Laravel 11 - 13 (`illuminate/support`, `illuminate/http`, `illuminate/console`, `illuminate/contracts`, `illuminate/bus`, `illuminate/queue`)
 
 ## Install the package
 

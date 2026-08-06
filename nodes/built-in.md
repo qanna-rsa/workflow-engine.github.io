@@ -48,14 +48,14 @@ Groups a run of nodes: enters its `body` branch, and once that branch is exhaust
 |---|---|---|
 | `data` | json | Optional data made available to the scope. Supports expressions. |
 
-### Call workflow — `@wf::action:call-workflow`
+### Call workflow — `@wf::action:call-workflow` · CLI
 
-Runs another workflow as a child and suspends until it finishes, then resumes with the child's output. Not currently offered in the interactive builder.
+Runs another workflow as a child and suspends until it finishes, then resumes with the child's output.
 
 | Field | Type | Notes |
 |---|---|---|
 | `workflow_id` | select, required | Any workflow using a [Manual trigger](../triggers/manual.md). |
-| `payload` | json | Data passed as the child's trigger payload. Supports expressions. |
+| `payload` | group | Populated dynamically from the target workflow's designed payload shape — see [Dynamic Schema Resolution](../advanced/dynamic-schema.md). |
 
 Output: the child workflow's output. Fails if the child workflow fails or is cancelled.
 

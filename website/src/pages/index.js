@@ -62,7 +62,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
-        <span className={styles.heroEyebrow}>For Laravel 11 &amp; 12</span>
+        <span className={styles.heroEyebrow}>For Laravel 11 &ndash; 13</span>
         <Heading as="h1" className={styles.heroTitle}>
           {siteConfig.title}
         </Heading>
