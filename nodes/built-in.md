@@ -40,6 +40,14 @@ Ends the workflow.
 
 A no-op — always succeeds with no output. Useful as an explicit placeholder branch target.
 
+### Set output — `@wf::action.output` · CLI
+
+Doesn't affect control flow — only shapes the execution's final `output`. By default that's whichever node happened to run last (see [`WorkflowExecution`](../concepts/execution.md)); placed at the end of a flow, this node's own output takes over instead, so a side-effecting step running afterward (send an email, log something) doesn't end up as the response.
+
+| Field | Type | Notes |
+|---|---|---|
+| `output` | json | The value this workflow should return. Supports expressions, e.g. `{"ticket_id": "{{nodes.create_ticket.id}}"}`. |
+
 ### Scope — `@wf::action:scope`
 
 Groups a run of nodes: enters its `body` branch, and once that branch is exhausted, continues from Scope's own `main` edge. Not currently offered in the interactive builder.
@@ -50,14 +58,15 @@ Groups a run of nodes: enters its `body` branch, and once that branch is exhaust
 
 ### Call workflow — `@wf::action:call-workflow` · CLI
 
-Runs another workflow as a child and suspends until it finishes, then resumes with the child's output.
+Runs another workflow as a child.
 
 | Field | Type | Notes |
 |---|---|---|
-| `workflow_id` | select, required | Any workflow using a [Manual trigger](../triggers/manual.md). |
+| `workflow` | select, required | Any workflow using a [Manual trigger](../triggers/manual.md). |
+| `response_mode` | select | `immediately` (default) — dispatch the child onto the queue and continue this flow right away with `{status: true}`. `last_node` — suspend until the child finishes and resolve with its output. A node saved before this field existed behaves as `last_node`. |
 | `payload` | group | Populated dynamically from the target workflow's designed payload shape — see [Dynamic Schema Resolution](../advanced/dynamic-schema.md). |
 
-Output: the child workflow's output. Fails if the child workflow fails or is cancelled.
+Output: `{status: true}` in `immediately` mode; the child workflow's output in `last_node` mode (fails if the child workflow fails or is cancelled).
 
 ### HTTP request — `@wf::http:request`
 
@@ -79,7 +88,7 @@ Output: `{status, ok, headers, body}`.
 
 ### Condition — `@wf::logic:condition` · CLI
 
-Branches on a comparison. Produces branch `true` or `false`.
+Branches on a comparison. Produces branch `true` or `false`. Once whichever branch's nodes run out, execution resumes on Condition's own `main` edge — attach whatever should happen after either branch there instead of repeating it at the end of both (see [The Interactive Builder § Merging branches back into the flow](../console/workflow-build.md#merging-branches-back-into-the-flow)).
 
 | Field | Type | Notes |
 |---|---|---|
@@ -109,7 +118,7 @@ Branches on a value against a list of cases. Not currently offered in the intera
 | `cases` | json, required | Array of `{value, branch}` pairs, e.g. `[{"value": "paid", "branch": "paid"}]`. First match wins. |
 | `strict` | checkbox | Use `===` instead of `==`. Default `false`. |
 
-Falls through to branch `default` if no case matches.
+Falls through to branch `default` if no case matches. Like Condition, a `main` edge is available for whatever should happen once any case's branch finishes.
 
 ## Variables
 

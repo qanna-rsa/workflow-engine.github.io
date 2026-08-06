@@ -39,6 +39,8 @@ final class WorkflowExecution
 }
 ```
 
+By default, `$output` is whichever node ran last — not necessarily the node that produced the value you actually care about, once side-effecting steps (send a notification, log something) run afterward. Add a [Set output](../nodes/built-in.md#action) node at the end of a flow to shape `$output` explicitly instead.
+
 Useful methods:
 
 ```php
